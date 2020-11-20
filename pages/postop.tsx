@@ -1,8 +1,10 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
+import { useMachine } from '@xstate/react';
+import { postOpMachine } from '../machines';
 
+import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   root: {
     textAlign: 'center',
@@ -15,21 +17,29 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Index() {
+function PostOp() {
   const classes = useStyles();
+  const [state, send] = useMachine(postOpMachine);
 
+  console.log(state);
+
+  React.useEffect(() => {
+    send('NEXT');
+  }, [send]);
   return (
     <>
       <div className={classes.root}>
         <div className={classes.strip}>
+          {/* TODO need a "header" component */}
           <Typography variant="h3" gutterBottom>
-            Gliflozin Guide
+            Post Op Guide
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Here is some explanation about what this guide is. There will also be a disclaimer in the footer..
+            <Link href="/">Back Home</Link>
           </Typography>
+          {/* renderCurrentStep() -> switch on state */}
           <Typography variant="body1" gutterBottom>
-            <Link href="/flows">Get started &gt;</Link>
+            First question goes here. I am in state: {state.value}
           </Typography>
         </div>
       </div>
@@ -37,4 +47,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default PostOp;
