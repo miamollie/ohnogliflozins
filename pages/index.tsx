@@ -6,10 +6,9 @@ import Head from 'next/head';
 const useStyles = makeStyles((_theme: any) => ({
   root: {
     textAlign: 'center',
-    height: 'calc(100vh - 64px)',
+    height: 'calc(100vh - 65px)',
     position: 'relative',
   },
-
   strip: {
     paddingTop: 30,
     paddingBottom: 30,
