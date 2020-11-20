@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 
+import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   root: {
     textAlign: 'center',
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Index() {
+function Flows() {
   const classes = useStyles();
 
   return (
@@ -23,13 +23,13 @@ function Index() {
       <div className={classes.root}>
         <div className={classes.strip}>
           <Typography variant="h3" gutterBottom>
-            Gliflozin Guide
+            Pick a guide!
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Here is some explanation about what this guide is. There will also be a disclaimer in the footer..
+            <Link href="/preop">Preop Guide</Link>
           </Typography>
           <Typography variant="body1" gutterBottom>
-            <Link href="/flows">Get started &gt;</Link>
+            <Link href="/postop">Postop Guide</Link>
           </Typography>
         </div>
       </div>
@@ -37,4 +37,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Flows;
