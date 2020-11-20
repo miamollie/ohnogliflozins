@@ -8,6 +8,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en" dir="ltr">
         <Head>
+          <title>Gliflozin Guide</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>

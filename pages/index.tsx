@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Head from 'next/head';
+import { Machine } from 'xstate';
 
 const useStyles = makeStyles((_theme: any) => ({
   root: {
@@ -21,9 +21,6 @@ function Index() {
   return (
     <>
       <div className={classes.root}>
-        <Head>
-          <title>Gliflozin Guide</title>
-        </Head>
         <div className={classes.strip}>
           <Typography variant="h3" gutterBottom>
             Gliflozin Guide
