@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Head from 'next/head';
-
-const useStyles = makeStyles((_theme: any) => ({
+import { useMachine } from '@xstate/react';
+import { preOpMachine } from '../machines';
+const useStyles = makeStyles(() => ({
   root: {
     textAlign: 'center',
     height: 'calc(100vh - 65px)',
@@ -17,18 +17,22 @@ const useStyles = makeStyles((_theme: any) => ({
 
 function Index() {
   const classes = useStyles();
+  const [state, send] = useMachine(preOpMachine);
+
+  console.log(state);
+
+  React.useEffect(() => {
+    send('NEXT');
+  }, [send]);
 
   return (
     <>
       <div className={classes.root}>
-        <Head>
-          <title>Gliflozin Guide</title>
-        </Head>
         <div className={classes.strip}>
           <Typography variant="h3" gutterBottom>
             Gliflozin Guide
           </Typography>
-          Hello Jamie this is your app
+          {state.value}
         </div>
       </div>
     </>
