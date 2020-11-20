@@ -1,0 +1,62 @@
+{
+  "name": "ohnogliflozins",
+  "version": "1.0.0",
+  "description": "Decision App for Gliflozins",
+  "dependencies": {
+    "@material-ui/core": "4.11.0",
+    "@material-ui/icons": "4.9.1",
+    "@zeit/next-typescript": "1.1.1",
+    "dotenv": "8.2.0",
+    "dotenv-load": "2.0.0",
+    "gsap": "2.1.3",
+    "next": "9.5.5",
+    "next-compose-plugins": "2.2.1",
+    "next-env": "1.1.1",
+    "next-offline": "5.0.3",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "8.2.0",
+    "@types/eslint": "6.8.1",
+    "@types/gsap": "1.20.2",
+    "@types/react-jss": "10.0.0",
+    "@types/styled-jsx": "2.2.8",
+    "@types/typescript": "2.0.0",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
+    "babel-eslint": "10.1.0",
+    "babel-plugin-module-resolver": "4.0.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "2.5.1",
+    "prettier": "1.19.1",
+    "prettier-eslint": "9.0.2",
+    "typescript": "3.9.7",
+    "webpack": "4.44.2"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miamollie/ohnogliflozins.git"
+  },
+  "keywords": [
+    "gliflozin"
+  ],
+  "author": "miamollie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miamollie/ohnogliflozins/issues"
+  },
+  "homepage": "https://github.com/miamollie/ohnogliflozins#readme"
+}

@@ -1,0 +1,21 @@
+{
+  "short_name": "GiflozinGuide",
+  "name": "",
+  "icons": [{
+      "src": "/TODO.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/TODO.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#TODO",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#TODO",
+  "gcm_sender_id": "TODO"
+}
