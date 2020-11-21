@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 
 import Link from 'next/link';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     textAlign: 'center',
     height: '100vh',
@@ -44,7 +44,8 @@ function Layout({
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <div className={classes.strip}>
-          <Typography variant="h3" gutterBottom>
+            {/* nav goes here with logo and App name */}
+          <Typography variant="h5" component="h2" gutterBottom>
             {heading}
           </Typography>
           {showHome && (
@@ -52,8 +53,8 @@ function Layout({
               <Link href="/">Back Home</Link>
             </Typography>
           )}
-          {children}
         </div>
+        {children}
       </Paper>
     </div>
   );

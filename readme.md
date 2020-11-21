@@ -13,3 +13,5 @@ Components
 - header nav
 - Layout component
 - card component
+
+- Animate route transition
