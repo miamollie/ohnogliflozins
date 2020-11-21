@@ -13,24 +13,28 @@ export const preOpMachine = Machine({
       on: {
         YES: 'insulinDeficientUnwell',
         NO: 'ketones',
+        BACK: 'initial',
       },
     },
     insulinDeficientUnwell: {
       on: {
         YES: 'cancel',
         NO: 'ketones',
+        BACK: 'withheldSg',
       },
     },
     ketones: {
       on: {
         YES: 'checkBE',
         NO: 'proceed',
+        BACK: 'withheldSg',
       },
     },
     checkBE: {
       on: {
-        GREATER: 'contactEndo',
-        LESS: 'DKA',
+        YES: 'contactEndo', //Greater
+        NO: 'DKA', //LEss
+        BACK: 'ketones',
       },
     },
     cancel: {

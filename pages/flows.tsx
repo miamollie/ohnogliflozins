@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import { makeStyles, styled } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 function Flows() {
   return (
@@ -50,7 +50,7 @@ function CardLink({ href, text }: { href: string; text: string }) {
   const classes = useStyles();
   return (
     <Box mb={1} className={classes.card}>
-      <Link as="a" href={href}>
+      <Link href={href}>
         <Typography variant="h5" className={classes.text}>
           {text}
         </Typography>

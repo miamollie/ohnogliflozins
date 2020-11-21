@@ -44,7 +44,7 @@ function Layout({
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <div className={classes.strip}>
-            {/* nav goes here with logo and App name */}
+          {/* nav goes here with logo and App name */}
           <Typography variant="h5" component="h2" gutterBottom>
             {heading}
           </Typography>
