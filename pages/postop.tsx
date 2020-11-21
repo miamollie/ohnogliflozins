@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Link from 'next/link';
 import { useMachine } from '@xstate/react';
 import { postOpMachine } from '../machines';
 import Layout from '../components/Layout';
