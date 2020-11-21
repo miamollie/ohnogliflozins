@@ -62,13 +62,31 @@ prescribed a SGLT2i"
           />
         );
       case 'cancel':
-        return <div color="red"> CANCEL</div>;
+        return (
+          <div color="red">
+            Strongly consider cancellation regardless of ketones If ketones > 1.0, urgent ABG/VBG and manage accordingly
+          </div>
+        );
       case 'DKA':
-        return <div color="red"> DKA</div>;
+        return (
+          <div color="red">
+            Postpone surgery Suspect DKA, commence DKA insulin/dextrose infusion, contact endocrinology
+          </div>
+        );
       case 'proceed':
-        return <div color="green">Proceed :)</div>;
+        return (
+          <div color="green">
+            Proceed if patient is clinically well Consider checking BGL and ketones every hour intraoperatively
+          </div>
+        );
       case 'contactEndo':
-        return <div color="orange">Uh oh contact endooo</div>;
+        return (
+          <div color="orange">
+            Contact endocrinology for advice and post-op follow up. Consider proceeding with surgery with concurrent
+            dextrose and variable rate insulin infusion with hourly BGL and ketone monitoring. (Alternatively 50ml 50%
+            dextrose and 2-4 units insulin bolus can be considered.)
+          </div>
+        );
       default:
         return null;
     }
