@@ -8,3 +8,8 @@
 - UI card for terminal states; accepts a child node for copy, and a colour (success/caution/fail)
 - UI for Flows (two buttons)
 - UI for Home (explainer copy, disclaimer, get started button)
+
+Components
+- header nav
+- Layout component
+- card component

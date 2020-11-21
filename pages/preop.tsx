@@ -1,50 +1,25 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Link from 'next/link';
 import { useMachine } from '@xstate/react';
 import { preOpMachine } from '../machines';
-
-import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles(() => ({
-  root: {
-    textAlign: 'center',
-    height: 'calc(100vh - 65px)',
-    position: 'relative',
-  },
-  strip: {
-    paddingTop: 30,
-    paddingBottom: 30,
-  },
-}));
+import Layout from '../components/Layout';
 
 function PreOp() {
-  const classes = useStyles();
   const [state, send] = useMachine(preOpMachine);
 
   console.log(state);
 
-  React.useEffect(() => {
-    send('NEXT');
-  }, [send]);
+//   React.useEffect(() => {
+//     send('NEXT');
+//   }, [send]);
 
   return (
-    <>
-      <div className={classes.root}>
-        <div className={classes.strip}>
-          {/* TODO need a "header" component */}
-          <Typography variant="h3" gutterBottom>
-            Pre Op Guide
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <Link href="/">Back Home</Link>
-          </Typography>
-          {/* renderCurrentStep() -> switch on state */}
-          <Typography variant="body1" gutterBottom>
-            First question goes here. I am in state: {state.value}
-          </Typography>
-        </div>
-      </div>
-    </>
+    <Layout heading="Pre Op Guide">
+      {/* renderCurrentStep() -> switch on state */}
+      <Typography variant="body1" gutterBottom>
+        First question goes here. I am in state: {state.value}
+      </Typography>
+    </Layout>
   );
 }
 
