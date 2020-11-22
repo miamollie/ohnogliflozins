@@ -73,18 +73,21 @@ export const postOpMachine = Machine({
       on: {
         YES: 'daySurgery', //Greater
         NO: 'checkBE', //Less
+        BACK: 'initial',
       },
     },
     checkBE: {
       on: {
         YES: 'daySurgery', //Greater
         NO: 'DKA', //Less
+        BACK: 'repeatKetones',
       },
     },
     daySurgery: {
       on: {
         NO: 'inpatient',
         YES: 'discharge',
+        BACK: 'checkBE',
       },
     },
     inpatient: {
