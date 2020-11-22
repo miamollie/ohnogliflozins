@@ -2,7 +2,6 @@ import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 interface ActionType {
   copy: string;
@@ -20,30 +19,24 @@ function QuestionCard({
   secondaryAction?: ActionType;
   returnToPrevState?: () => void;
 }) {
-  function handleClick() {
-    console.log('what');
-    primaryAction.action();
-  }
   return (
     <section>
       <Typography variant="h5" component="h2" gutterBottom>
         {question}
       </Typography>
       <Box mb={1}>
-        <ButtonGroup>
-          <Button onClick={handleClick}>
-            <Typography variant="h5">{primaryAction.copy}</Typography>
+        <Button color="primary" variant="contained" disableElevation onClick={primaryAction.action}>
+          <Typography variant="body1">{primaryAction.copy}</Typography>
+        </Button>
+        {secondaryAction && (
+          <Button color="secondary" onClick={secondaryAction.action}>
+            <Typography variant="body1">{secondaryAction.copy}</Typography>
           </Button>
-          {secondaryAction && (
-            <Button onClick={secondaryAction.action}>
-              <Typography variant="h5">{secondaryAction.copy}</Typography>
-            </Button>
-          )}
-        </ButtonGroup>
+        )}
       </Box>
       {returnToPrevState && (
-        <Button onClick={returnToPrevState}>
-          <Typography variant="h5">Back</Typography>
+        <Button variant="outlined" onClick={returnToPrevState}>
+          <Typography variant="body1">Back</Typography>
         </Button>
       )}
     </section>
@@ -51,5 +44,3 @@ function QuestionCard({
 }
 
 export default QuestionCard;
-
-//TODO reset machine if type is final && start again

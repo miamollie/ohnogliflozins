@@ -3,6 +3,7 @@ import { useMachine } from '@xstate/react';
 import { preOpMachine } from '../machines';
 import Layout from '../components/Layout';
 import QuestionCard from '../components/QuestionCard';
+import ResultCard from 'components/ResultCard';
 
 function PreOp() {
   const [state, send] = useMachine(preOpMachine);
@@ -14,6 +15,9 @@ function PreOp() {
   }
   function sendNo() {
     send('NO');
+  }
+  function sendReset() {
+    send('RESET');
   }
   function renderCurrentStep() {
     switch (state.value) {
@@ -63,29 +67,30 @@ prescribed a SGLT2i"
         );
       case 'cancel':
         return (
-          <div color="red">
-            Strongly consider cancellation regardless of ketones If ketones > 1.0, urgent ABG/VBG and manage accordingly
-          </div>
+          <ResultCard result="cancel" tryAgain={sendReset}>
+            Strongly consider cancellation regardless of ketones If ketones {'>'} 1.0, urgent ABG/VBG and manage
+            accordingly
+          </ResultCard>
         );
       case 'DKA':
         return (
-          <div color="red">
+          <ResultCard result="DKA" tryAgain={sendReset}>
             Postpone surgery Suspect DKA, commence DKA insulin/dextrose infusion, contact endocrinology
-          </div>
+          </ResultCard>
         );
       case 'proceed':
         return (
-          <div color="green">
+          <ResultCard result="proceed" tryAgain={sendReset}>
             Proceed if patient is clinically well Consider checking BGL and ketones every hour intraoperatively
-          </div>
+          </ResultCard>
         );
       case 'contactEndo':
         return (
-          <div color="orange">
+          <ResultCard result="contactEndo" tryAgain={sendReset}>
             Contact endocrinology for advice and post-op follow up. Consider proceeding with surgery with concurrent
             dextrose and variable rate insulin infusion with hourly BGL and ketone monitoring. (Alternatively 50ml 50%
             dextrose and 2-4 units insulin bolus can be considered.)
-          </div>
+          </ResultCard>
         );
       default:
         return null;

@@ -3,6 +3,7 @@ import { useMachine } from '@xstate/react';
 import { postOpMachine } from '../machines';
 import Layout from '../components/Layout';
 import QuestionCard from 'components/QuestionCard';
+import ResultCard from 'components/ResultCard';
 
 function PostOp() {
   const [state, send] = useMachine(postOpMachine);
@@ -15,6 +16,9 @@ function PostOp() {
   }
   function sendNo() {
     send('NO');
+  }
+  function sendReset() {
+    send('RESET');
   }
 
   function renderCurrentStep() {
@@ -57,25 +61,25 @@ prescribed a SGLT2i"
 
       case 'inpatient':
         return (
-          <div color="red">
+          <ResultCard result="inpatient" tryAgain={sendReset}>
             Recheck ketones and BGL every: - 1 hour in PACU then - 2 hourly on ward for 8 hours then - 4 hourly until
             eating and drinking normally again
-          </div>
+          </ResultCard>
         );
       case 'DKA':
         return (
-          <div color="red">
+          <ResultCard result="DKA" tryAgain={sendReset}>
             Suspect DKA. Contact endocrinology, start DKA insulin/dextrose infusion, Consider HDU Bed
-          </div>
+          </ResultCard>
         );
       case 'discharge':
         return (
-          <div color="green">
+          <ResultCard result="discharge" tryAgain={sendReset}>
             BGL and ketone every 2 hours until eating and drinking normally. Consider 50 ml 50% dextrose and 2-4 units
             insulin bolus to facilitate ketone clearance. This should be followed by BGL & ketone check at 15 minutes
             and then hourly, and VBG (for potassium) 1 hour later. Consider overnight admission if vomiting / poor oral
             intake and persistent ketosis Resume SGLT2i when appropriate*
-          </div>
+          </ResultCard>
         );
       default:
         return null;
