@@ -13,37 +13,49 @@ export const preOpMachine = Machine({
       on: {
         YES: 'insulinDeficientUnwell',
         NO: 'ketones',
+        BACK: 'initial',
       },
     },
     insulinDeficientUnwell: {
       on: {
         YES: 'cancel',
         NO: 'ketones',
+        BACK: 'withheldSg',
       },
     },
     ketones: {
       on: {
         YES: 'checkBE',
         NO: 'proceed',
+        BACK: 'withheldSg',
       },
     },
     checkBE: {
       on: {
-        GREATER: 'contactEndo',
-        LESS: 'DKA',
+        YES: 'contactEndo', //Greater
+        NO: 'DKA', //Less
+        BACK: 'ketones',
       },
     },
     cancel: {
-      type: 'final',
+      on: {
+        RESET: 'initial',
+      },
     },
     proceed: {
-      type: 'final',
+      on: {
+        RESET: 'initial',
+      },
     },
     contactEndo: {
-      type: 'final',
+      on: {
+        RESET: 'initial',
+      },
     },
     DKA: {
-      type: 'final',
+      on: {
+        RESET: 'initial',
+      },
     },
   },
 });
@@ -59,14 +71,14 @@ export const postOpMachine = Machine({
     },
     repeatKetones: {
       on: {
-        GREATER: 'daySurgery',
-        LESS: 'checkBE',
+        YES: 'daySurgery', //Greater
+        NO: 'checkBE', //Less
       },
     },
     checkBE: {
       on: {
-        GREATER: 'daySurgery',
-        LESS: 'DKA',
+        YES: 'daySurgery', //Greater
+        NO: 'DKA', //Less
       },
     },
     daySurgery: {
@@ -76,13 +88,19 @@ export const postOpMachine = Machine({
       },
     },
     inpatient: {
-      type: 'final',
+      on: {
+        RESET: 'initial',
+      },
     },
     discharge: {
-      type: 'final',
+      on: {
+        RESET: 'initial',
+      },
     },
     DKA: {
-      type: 'final',
+      on: {
+        RESET: 'initial',
+      },
     },
   },
 });

@@ -1,39 +1,61 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Link from 'next/link';
-
+import Layout from '../components/Layout';
 import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles(() => ({
-  root: {
-    textAlign: 'center',
-    height: 'calc(100vh - 65px)',
-    position: 'relative',
+
+function Flows() {
+  return (
+    <Layout heading="Choose a guide">
+      <Box>
+        <CardLink href="/preop" text="Preop Guide" />
+        <CardLink href="/postop" text="Postop Guide" />
+      </Box>
+    </Layout>
+  );
+}
+const useStyles = makeStyles((theme: any) => ({
+  text: {
+    height: '100%',
+    width: '100%',
+    color: '#fff',
+    textDecoration: 'none',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '&:hover, &:focus': {
+      outline: 'none',
+    },
   },
-  strip: {
-    paddingTop: 30,
-    paddingBottom: 30,
+  card: {
+    cursor: 'pointer',
+    border: 'none',
+    borderRadius: '5px',
+    padding: 0,
+    background: theme.palette.primary.main,
+    height: '100px',
+    width: '100%',
+    '&:not(:first-of-type)': {
+      background: theme.palette.primary.light,
+    },
+    '&:hover, &:focus': {
+      outline: 'none',
+      //lighten?
+    },
   },
 }));
 
-function Flows() {
+function CardLink({ href, text }: { href: string; text: string }) {
   const classes = useStyles();
-
   return (
-    <>
-      <div className={classes.root}>
-        <div className={classes.strip}>
-          <Typography variant="h3" gutterBottom>
-            Pick a guide!
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <Link href="/preop">Preop Guide</Link>
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <Link href="/postop">Postop Guide</Link>
-          </Typography>
-        </div>
-      </div>
-    </>
+    <Box mb={1} className={classes.card}>
+      <Link href={href}>
+        <Typography variant="h5" className={classes.text}>
+          {text}
+        </Typography>
+      </Link>
+    </Box>
   );
 }
 
