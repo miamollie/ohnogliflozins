@@ -6,6 +6,8 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import { register, unregister } from 'next-offline/runtime';
 import Box from '@material-ui/core/Box';
 
