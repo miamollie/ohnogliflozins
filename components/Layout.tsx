@@ -6,44 +6,35 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import { register, unregister } from 'next-offline/runtime';
+import Box from '@material-ui/core/Box';
 
+const HEADER_HEIGHT = '64px';
 const useStyles = makeStyles((theme: any) => ({
   root: {
     textAlign: 'center',
-    height: 'calc(100vh)',
+    height: `100vh`,
     position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
   },
   nav: {
-    height: '80px',
+    height: HEADER_HEIGHT,
   },
   strip: {
     paddingTop: 30,
     paddingBottom: 30,
   },
-  inline: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-  },
-  inlineCenter: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-
+  fullWidth: {
     width: '100%',
   },
   logo: {
     width: '80vw',
+    maxWidth: '300px',
   },
   logoIcon: {
     height: '4rem',
     margin: '10px 0',
   },
   paper: {
-    height: 'calc(100vh - 64px)',
     maxWidth: '600px',
     width: '90%',
     margin: 'auto',
@@ -66,26 +57,37 @@ function Layout({
 }) {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Box component="main" display="flex" flexDirection="column" className={classes.root}>
       <Header heading={heading} isHomePage={isHome} />
-      <Paper className={classes.paper}>{children}</Paper>
-    </div>
+      <Paper className={classes.paper}>
+        <Box display="flex" flexDirection="column" justifyContent="space-around" style={{ height: '100%' }}>
+          {children}
+        </Box>
+      </Paper>
+    </Box>
   );
 }
 
 function Header({ heading, isHomePage = false }: { heading?: string; isHomePage: boolean }) {
+  // TODO move this somewhere more sensible
+  React.useEffect(() => {
+    register('/public/service-worker.js', { scope: '/' });
+    return () => {
+      unregister();
+    };
+  }, []);
   const classes = useStyles();
   function headerContents() {
     if (isHomePage) {
       return (
-        <section className={classes.inlineCenter}>
+        <Box display="flex" justifyContent="center" alignItems="center" className={classes.fullWidth}>
           <img className={classes.logo} src="/mainLogo.png" alt="Gliflozin Guide" />
-        </section>
+        </Box>
       );
     }
 
     return (
-      <section className={classes.inline}>
+      <Box display="flex" justifyContent="space-between" alignItems="center" className={classes.fullWidth}>
         <Link href="/">
           <HomeOutlinedIcon color="secondary" />
         </Link>
@@ -93,7 +95,7 @@ function Header({ heading, isHomePage = false }: { heading?: string; isHomePage:
           {heading}
         </Typography>
         <img className={classes.logoIcon} src="/logoIcon.png" alt="Gliflozin Guide" />
-      </section>
+      </Box>
     );
   }
 
