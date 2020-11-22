@@ -20,26 +20,32 @@ function QuestionCard({
   returnToPrevState?: () => void;
 }) {
   return (
-    <section>
-      <Typography variant="h5" component="h2" gutterBottom>
-        {question}
-      </Typography>
-      <Box mb={1}>
-        <Button color="primary" variant="contained" disableElevation onClick={primaryAction.action}>
-          <Typography variant="body1">{primaryAction.copy}</Typography>
-        </Button>
-        {secondaryAction && (
-          <Button color="secondary" onClick={secondaryAction.action}>
-            <Typography variant="body1">{secondaryAction.copy}</Typography>
-          </Button>
-        )}
+    <>
+      <Box component="section" bgcolor="primary.main" padding="30px">
+        <Typography variant="h5" component="h2" gutterBottom>
+          {question}
+        </Typography>
+        <Box mb={1} display="flex" justifyContent="center">
+          <Box m={1}>
+            <Button size="large" color="secondary" variant="contained" disableElevation onClick={primaryAction.action}>
+              <Typography variant="body1">{primaryAction.copy}</Typography>
+            </Button>
+          </Box>
+          <Box m={1}>
+            {secondaryAction && (
+              <Button size="large" color="secondary" variant="outlined" onClick={secondaryAction.action}>
+                <Typography variant="body1">{secondaryAction.copy}</Typography>
+              </Button>
+            )}
+          </Box>
+        </Box>
       </Box>
       {returnToPrevState && (
         <Button variant="outlined" onClick={returnToPrevState}>
-          <Typography variant="body1">Back</Typography>
+          <Typography variant="body1">&lt; Back</Typography>
         </Button>
       )}
-    </section>
+    </>
   );
 }
 

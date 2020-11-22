@@ -1,9 +1,7 @@
-// next.config.js
-const withPlugins = require('next-compose-plugins');
-const offline = require('next-offline');
+const withOffline = require('next-offline');
 
 const nextConfig = {
-  target: process.env.NODE_ENV !== 'production' ? 'server' : 'serverless',
+  generateInDevMode: false,
   dontAutoRegisterSw: true,
   generateSw: false,
   devSwSrc: './public/sw.js',
@@ -13,4 +11,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([[offline]], nextConfig);
+module.exports = withOffline(nextConfig);

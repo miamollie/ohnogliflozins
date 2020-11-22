@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme: any) => ({
     border: 'none',
     borderRadius: '5px',
     padding: 0,
-    background: theme.palette.primary.main,
+    background: theme.palette.secondary.main,
     height: '100px',
     width: '100%',
     '&:not(:first-of-type)': {
-      background: theme.palette.primary.light,
+      background: theme.palette.secondary.light,
     },
     '&:hover, &:focus': {
       outline: 'none',

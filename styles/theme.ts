@@ -1,17 +1,17 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   drawerWidth: 240,
   palette: {
     primary: {
-      main: '#2d2d2d',
-      text: '#fff',
+      main: '#f9f9f9',
+      text: '#444',
     },
     secondary: {
-      light: blue[300],
-      main: blue[700],
-      dark: blue[700],
+      dark: '#004c8b',
+      light: '#0277bc',
+      main: '#004c8b',
+      text: '#fff',
     },
     typography: {
       useNextVariants: true,

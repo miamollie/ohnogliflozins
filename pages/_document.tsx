@@ -16,8 +16,10 @@ class MyDocument extends Document {
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
           {/* PWA primary color */}
+          <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />
