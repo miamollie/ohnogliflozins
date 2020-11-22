@@ -9,6 +9,10 @@ class MyDocument extends Document {
       <Html lang="en" dir="ltr">
         <Head>
           <meta charSet="utf-8" />
+          <meta
+            name="description"
+            content="A guide for pre and postop treatment for patients  usually prescribed a SGLT2i"
+          />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
           {/* PWA primary color */}
