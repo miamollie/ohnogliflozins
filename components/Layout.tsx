@@ -6,9 +6,6 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import { register, unregister } from 'next-offline/runtime';
 import Box from '@material-ui/core/Box';
 
 const HEADER_HEIGHT = '64px';
@@ -71,13 +68,6 @@ function Layout({
 }
 
 function Header({ heading, isHomePage = false }: { heading?: string; isHomePage: boolean }) {
-  // TODO move this somewhere more sensible
-  React.useEffect(() => {
-    register('/public/service-worker.js', { scope: '/' });
-    return () => {
-      unregister();
-    };
-  }, []);
   const classes = useStyles();
   function headerContents() {
     if (isHomePage) {
