@@ -92,7 +92,7 @@ function Header({ heading, isHomePage = false }: { heading?: string; isHomePage:
   }
 
   return (
-    <AppBar position="static" color="transparent">
+    <AppBar position="sticky" color="transparent">
       <Toolbar>{headerContents()}</Toolbar>
     </AppBar>
   );

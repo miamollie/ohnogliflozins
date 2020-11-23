@@ -1,5 +1,6 @@
 import { Machine } from 'xstate';
 
+export const FINAL_STEPS = ['DKA', 'discharge', 'inpatient', 'cancel', 'contactEndo'];
 export const preOpMachine = Machine({
   id: 'preop',
   initial: 'initial',
