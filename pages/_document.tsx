@@ -8,6 +8,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en" dir="ltr">
         <Head>
+          <meta name="application-name" content="Gliflozin Guide" />
+
           <meta charSet="utf-8" />
           <meta
             name="description"
@@ -17,6 +19,9 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
           <link rel="apple-touch-icon" sizes="152x152" href="/152.png" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+          <meta name="apple-mobile-web-app-title" content="Gliflozin Guide" />
+
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
