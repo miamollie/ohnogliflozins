@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { useMachine } from '@xstate/react';
-import { postOpMachine } from '../machines';
+import { postOpMachine, FINAL_STEPS } from '../machines';
 import Layout from '../components/Layout';
 import QuestionCard from 'components/QuestionCard';
 import ResultCard from 'components/ResultCard';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 function PostOp() {
   const [state, send] = useMachine(postOpMachine);
@@ -20,14 +22,14 @@ function PostOp() {
   function sendReset() {
     send('RESET');
   }
+  const { value } = state;
 
   function renderCurrentStep() {
-    switch (state.value) {
+    switch (value) {
       case 'initial':
         return (
           <QuestionCard
-            question="Patient usually
-prescribed a SGLT2i"
+            question="Patient usually prescribed a SGLT2i"
             primaryAction={{ copy: 'Next', action: () => send('NEXT') }}
           />
         );
@@ -37,7 +39,6 @@ prescribed a SGLT2i"
             question="Repeat ketones and BGL in PACU"
             primaryAction={{ copy: 'Ketones > 1.0 mmol/L', action: sendYes }}
             secondaryAction={{ copy: 'Ketones <= 1.0 mmol/L', action: sendNo }}
-            returnToPrevState={goBack}
           />
         );
       case 'checkBE':
@@ -46,7 +47,6 @@ prescribed a SGLT2i"
             question="ABG/VBG"
             primaryAction={{ copy: 'BE >= -5', action: sendYes }}
             secondaryAction={{ copy: 'BE < -5', action: sendNo }}
-            returnToPrevState={goBack}
           />
         );
       case 'daySurgery':
@@ -55,26 +55,25 @@ prescribed a SGLT2i"
             question="Day surgery?"
             primaryAction={{ copy: 'Yes', action: sendYes }}
             secondaryAction={{ copy: 'No', action: sendNo }}
-            returnToPrevState={goBack}
           />
         );
 
       case 'inpatient':
         return (
-          <ResultCard result="inpatient" tryAgain={sendReset}>
+          <ResultCard result="inpatient">
             Recheck ketones and BGL every: - 1 hour in PACU then - 2 hourly on ward for 8 hours then - 4 hourly until
             eating and drinking normally again
           </ResultCard>
         );
       case 'DKA':
         return (
-          <ResultCard result="DKA" tryAgain={sendReset}>
+          <ResultCard result="DKA">
             Suspect DKA. Contact endocrinology, start DKA insulin/dextrose infusion, Consider HDU Bed
           </ResultCard>
         );
       case 'discharge':
         return (
-          <ResultCard result="discharge" tryAgain={sendReset}>
+          <ResultCard result="discharge">
             BGL and ketone every 2 hours until eating and drinking normally. Consider 50 ml 50% dextrose and 2-4 units
             insulin bolus to facilitate ketone clearance. This should be followed by BGL & ketone check at 15 minutes
             and then hourly, and VBG (for potassium) 1 hour later. Consider overnight admission if vomiting / poor oral
@@ -85,8 +84,18 @@ prescribed a SGLT2i"
         return null;
     }
   }
+  const isCurrentStepFinal = FINAL_STEPS.includes(value as string);
 
-  return <Layout heading="Post Op Guide">{renderCurrentStep()}</Layout>;
+  return (
+    <Layout heading="Post Op Guide">
+      {renderCurrentStep()}{' '}
+      {value !== 'initial' && (
+        <Button variant="outlined" onClick={isCurrentStepFinal ? sendReset : goBack}>
+          <Typography variant="body1">{isCurrentStepFinal ? 'Start again' : '< Back'}</Typography>
+        </Button>
+      )}
+    </Layout>
+  );
 }
 
 export default PostOp;
