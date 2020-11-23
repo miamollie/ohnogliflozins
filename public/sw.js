@@ -5,6 +5,7 @@ if (typeof importScripts === 'function') {
   if (workbox) {
     console.log('Workbox is loaded');
     /* injection point for manifest files.  */
+    // eslint-disable-next-line no-undef
     workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
     // control the uncontrolled client side
     workbox.core.clientsClaim();
@@ -35,8 +36,8 @@ if (typeof importScripts === 'function') {
 
     //For JS/CSS
     /*
-      Resources are requested from both the cache and the network in parallel. 
-      The strategy will respond with the cached version if available, otherwise wait for the network response. 
+      Resources are requested from both the cache and the network in parallel.
+      The strategy will respond with the cached version if available, otherwise wait for the network response.
       The cache is updated with the network response with each successful request
       */
     workbox.routing.registerRoute(
@@ -81,6 +82,6 @@ if (typeof importScripts === 'function') {
       }),
     );
   } else {
-    // console.log('Workbox could not be loaded. No Offline support');
+    console.log('Workbox could not be loaded. No Offline support');
   }
 }
