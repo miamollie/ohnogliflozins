@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme: any) => ({
     margin: 'auto',
     padding: 30,
     [theme.breakpoints.down('md')]: {
+      //TODO fix breakpoints
       width: '100%',
       height: '100%',
     },
