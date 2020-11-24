@@ -10,7 +10,8 @@ function Index() {
     <Layout isHome>
       <Box display="flex" flexDirection="column" justifyContent="space-evenly">
         <Typography variant="body1" gutterBottom>
-          Here is some explanation about what this guide is. There will also be a disclaimer in the footer..
+          Here is some explanation about what this guide is. There will also be a disclaimer in the footer.. Also
+          metnion what DKA is
         </Typography>
         <Box m={4}>
           <Button color="primary" variant="contained">

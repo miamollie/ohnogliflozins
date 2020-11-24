@@ -25,8 +25,8 @@ export const preOpMachine = Machine({
     },
     insulinDeficientUnwell: {
       on: {
-        YES: 'cancel',
-        NO: 'ketones',
+        YES: 'cancel', //greater
+        NO: 'ketones', //less
       },
     },
     ketones: {
