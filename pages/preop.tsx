@@ -9,9 +9,6 @@ import Button from '@material-ui/core/Button';
 
 function PreOp() {
   const [state, send] = useMachine(preOpMachine);
-  function goBack() {
-    send('BACK');
-  }
   function sendYes() {
     send('YES');
   }
@@ -102,9 +99,9 @@ prescribed a SGLT2i"
   return (
     <Layout heading="Pre Op Guide">
       {renderCurrentStep()}
-      {value !== 'initial' && (
-        <Button variant="outlined" onClick={isCurrentStepFinal ? sendReset : goBack}>
-          <Typography variant="body1">{isCurrentStepFinal ? 'Start again' : '< Back'}</Typography>
+      {isCurrentStepFinal && (
+        <Button variant="outlined" onClick={sendReset}>
+          <Typography variant="body1">Start again</Typography>
         </Button>
       )}
     </Layout>

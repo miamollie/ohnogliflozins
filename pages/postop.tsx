@@ -10,9 +10,6 @@ import Button from '@material-ui/core/Button';
 function PostOp() {
   const [state, send] = useMachine(postOpMachine);
 
-  function goBack() {
-    send('BACK');
-  }
   function sendYes() {
     send('YES');
   }
@@ -89,9 +86,9 @@ function PostOp() {
   return (
     <Layout heading="Post Op Guide">
       {renderCurrentStep()}{' '}
-      {value !== 'initial' && (
-        <Button variant="outlined" onClick={isCurrentStepFinal ? sendReset : goBack}>
-          <Typography variant="body1">{isCurrentStepFinal ? 'Start again' : '< Back'}</Typography>
+      {isCurrentStepFinal && (
+        <Button variant="outlined" onClick={sendReset}>
+          <Typography variant="body1">Start again</Typography>
         </Button>
       )}
     </Layout>

@@ -14,28 +14,24 @@ export const preOpMachine = Machine({
       on: {
         YES: 'insulinDeficientUnwell',
         NO: 'ketones',
-        BACK: 'initial',
       },
     },
     insulinDeficientUnwell: {
       on: {
         YES: 'cancel',
         NO: 'ketones',
-        BACK: 'withheldSg',
       },
     },
     ketones: {
       on: {
         YES: 'checkBE',
         NO: 'proceed',
-        BACK: 'withheldSg',
       },
     },
     checkBE: {
       on: {
         YES: 'contactEndo', //Greater
         NO: 'DKA', //Less
-        BACK: 'ketones',
       },
     },
     cancel: {
@@ -74,21 +70,18 @@ export const postOpMachine = Machine({
       on: {
         YES: 'daySurgery', //Greater
         NO: 'checkBE', //Less
-        BACK: 'initial',
       },
     },
     checkBE: {
       on: {
         YES: 'daySurgery', //Greater
         NO: 'DKA', //Less
-        BACK: 'repeatKetones',
       },
     },
     daySurgery: {
       on: {
         NO: 'inpatient',
         YES: 'discharge',
-        BACK: 'checkBE',
       },
     },
     inpatient: {
