@@ -13,10 +13,12 @@ function QuestionCard({
   question,
   primaryAction,
   secondaryAction,
+  children,
 }: {
   question: string;
   primaryAction: ActionType;
   secondaryAction?: ActionType;
+  children?: React.ReactNode;
 }) {
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit key={question}>
@@ -25,6 +27,7 @@ function QuestionCard({
           <Typography variant="h5" component="h2" gutterBottom>
             {question}
           </Typography>
+          {children}
           <Box mb={1} display="flex" justifyContent="center">
             <Box m={1}>
               <Button

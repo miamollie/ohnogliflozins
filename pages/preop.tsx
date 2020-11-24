@@ -25,15 +25,26 @@ function PreOp() {
       case 'initial':
         return (
           <QuestionCard
-            question="Patient usually
-prescribed a SGLT2i"
-            primaryAction={{ copy: 'Next', action: () => send('NEXT') }}
-          />
+            question="Has the SGLT2i been ceased appropriately?"
+            primaryAction={{ copy: 'Yes', action: sendYes }}
+            secondaryAction={{ copy: 'No', action: sendNo }}
+          >
+            <p>
+              For procedures requiring a stay of <b>one or more days</b> in hospital, or procedures requiring "bowel
+              preparation" including <b>colonoscopy</b>, SGLT2i should be withheld 2 days prior to the procedure and the
+              day of procedure.
+            </p>
+            <p>
+              For <b>day stay</b> procedures including <b>gastroscopy</b>, SGLT2i should be withheld for the day of
+              procedure only. Fasting before and after the procedure should be minimised.
+            </p>
+          </QuestionCard>
         );
-      case 'withheldSg':
+      case 'withHeldWell':
+      case 'continuedWell':
         return (
           <QuestionCard
-            question="SGLT2i withheld appropriately preoperatively* and patient clinically  well"
+            question="Is the patient clinically well?"
             primaryAction={{ copy: 'Yes', action: sendYes }}
             secondaryAction={{ copy: 'No', action: sendNo }}
           />
