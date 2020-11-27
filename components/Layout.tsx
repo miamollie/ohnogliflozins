@@ -36,12 +36,11 @@ const useStyles = makeStyles((theme: any) => ({
   paper: {
     maxWidth: '600px',
     width: '90%',
+    height: '100%',
     margin: 'auto',
     padding: 30,
     [theme.breakpoints.down('md')]: {
-      //TODO fix breakpoints
       width: '100%',
-      height: '100%',
     },
   },
 }));

@@ -25,15 +25,26 @@ function PreOp() {
       case 'initial':
         return (
           <QuestionCard
-            question="Patient usually
-prescribed a SGLT2i"
-            primaryAction={{ copy: 'Next', action: () => send('NEXT') }}
-          />
+            question="Has the SGLT2i been ceased appropriately?"
+            primaryAction={{ copy: 'Yes', action: sendYes }}
+            secondaryAction={{ copy: 'No', action: sendNo }}
+          >
+            <p>
+              For procedures requiring a stay of <b>one or more days</b> in hospital, or procedures requiring "bowel
+              preparation" including <b>colonoscopy</b>, SGLT2i should be withheld 2 days prior to the procedure and the
+              day of procedure.
+            </p>
+            <p>
+              For <b>day stay</b> procedures including <b>gastroscopy</b>, SGLT2i should be withheld for the day of
+              procedure only. Fasting before and after the procedure should be minimised.
+            </p>
+          </QuestionCard>
         );
-      case 'withheldSg':
+      case 'withHeldWell':
+      case 'continuedWell':
         return (
           <QuestionCard
-            question="SGLT2i withheld appropriately preoperatively* and patient clinically  well"
+            question="Is the patient clinically well?"
             primaryAction={{ copy: 'Yes', action: sendYes }}
             secondaryAction={{ copy: 'No', action: sendNo }}
           />
@@ -41,38 +52,51 @@ prescribed a SGLT2i"
       case 'insulinDeficientUnwell':
         return (
           <QuestionCard
-            question="HbA1c available and > 9%? OR clinically unwell"
-            primaryAction={{ copy: 'Yes', action: sendYes }}
-            secondaryAction={{ copy: 'No', action: sendNo }}
-          />
+            question="What is the patient's HbA1c?"
+            primaryAction={{ copy: '>9%', action: sendYes }}
+            secondaryAction={{ copy: '≤ 9%*', action: sendNo }}
+          >
+            *or unavailable
+          </QuestionCard>
         );
       case 'ketones':
         return (
           <QuestionCard
-            question="Ketones > 1.0 mmol/L"
-            primaryAction={{ copy: 'Yes', action: sendYes }}
-            secondaryAction={{ copy: 'No', action: sendNo }}
-          />
+            question="Check patient's ketones"
+            primaryAction={{ copy: ' > 1.0', action: sendYes }}
+            secondaryAction={{ copy: '≤ 1.0', action: sendNo }}
+          >
+            Measured in mmol/L
+          </QuestionCard>
         );
       case 'checkBE':
         return (
           <QuestionCard
-            question="Urgent ABG/VBG"
-            primaryAction={{ copy: 'BE >= -5', action: sendYes }}
-            secondaryAction={{ copy: 'BE < -5', action: sendNo }}
-          />
+            question="What is the standard base excess?"
+            primaryAction={{ copy: '≥ -5', action: sendYes }}
+            secondaryAction={{ copy: '< -5', action: sendNo }}
+          >
+            Request urgent ABG/VBG
+          </QuestionCard>
         );
       case 'cancel':
         return (
           <ResultCard result="cancel">
-            Strongly consider cancellation regardless of ketones If ketones {'>'} 1.0, urgent ABG/VBG and manage
-            accordingly
+            <Typography variant="body1" gutterBottom>
+              Strongly consider cancellation of non-urgent procedures regardless of ketones, due to high risk of DKA.
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              If ketones {'>'} 1.0, urgent ABG/VBG and if standard base excess {'<'} -5 treat as presumed DKA.
+            </Typography>
           </ResultCard>
         );
       case 'DKA':
         return (
           <ResultCard result="DKA">
-            Postpone surgery Suspect DKA, commence DKA insulin/dextrose infusion, contact endocrinology
+            <Typography variant="h5" component="h2">
+              Postpone surgery
+            </Typography>{' '}
+            Suspect DKA, commence DKA insulin/dextrose infusion, contact endocrinology
           </ResultCard>
         );
       case 'proceed':

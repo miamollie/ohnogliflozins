@@ -1,25 +1,32 @@
 import { Machine } from 'xstate';
 
-export const FINAL_STEPS = ['DKA', 'discharge', 'inpatient', 'cancel', 'contactEndo'];
+export const FINAL_STEPS = ['DKA', 'discharge', 'inpatient', 'cancel', 'contactEndo', 'proceed'];
 export const preOpMachine = Machine({
   id: 'preop',
   initial: 'initial',
   states: {
     initial: {
       on: {
-        NEXT: 'withheldSg',
+        YES: 'withHeldWell',
+        NO: 'continuedWell',
       },
     },
-    withheldSg: {
+    withHeldWell: {
+      on: {
+        YES: 'ketones',
+        NO: 'insulinDeficientUnwell',
+      },
+    },
+    continuedWell: {
       on: {
         YES: 'insulinDeficientUnwell',
-        NO: 'ketones',
+        NO: 'cancel',
       },
     },
     insulinDeficientUnwell: {
       on: {
-        YES: 'cancel',
-        NO: 'ketones',
+        YES: 'cancel', //greater
+        NO: 'ketones', //less
       },
     },
     ketones: {
