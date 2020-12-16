@@ -75,8 +75,8 @@ export const postOpMachine = Machine({
     },
     repeatKetones: {
       on: {
-        YES: 'daySurgery', //Greater
-        NO: 'checkBE', //Less
+        YES: 'checkBE', //Greater
+        NO: 'daySurgery', //Less
       },
     },
     checkBE: {

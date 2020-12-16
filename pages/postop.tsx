@@ -33,18 +33,27 @@ function PostOp() {
       case 'repeatKetones':
         return (
           <QuestionCard
-            question="Repeat ketones and BGL in PACU"
-            primaryAction={{ copy: 'Ketones > 1.0 mmol/L', action: sendYes }}
-            secondaryAction={{ copy: 'Ketones <= 1.0 mmol/L', action: sendNo }}
-          />
+            question="Repeat Ketones and Glucose in PACU"
+            primaryAction={{ copy: 'Ketones > 1.0', action: sendYes }}
+            secondaryAction={{ copy: 'Ketones ≤ 1.0', action: sendNo }}
+          >
+            <p>
+              What is the patient's ketone result? (mmol/L)
+            </p>
+            
+          </QuestionCard>
         );
       case 'checkBE':
         return (
           <QuestionCard
-            question="ABG/VBG"
-            primaryAction={{ copy: 'BE >= -5', action: sendYes }}
-            secondaryAction={{ copy: 'BE < -5', action: sendNo }}
-          />
+            question="Obtain an Arterial or Venous Blood Gas"
+            primaryAction={{ copy: '≥ -5', action: sendYes }}
+            secondaryAction={{ copy: '< -5', action: sendNo }}
+          >
+            <p> 
+              What is the Standard Base Excess?
+            </p>
+          </QuestionCard>
         );
       case 'daySurgery':
         return (
@@ -52,29 +61,50 @@ function PostOp() {
             question="Day surgery?"
             primaryAction={{ copy: 'Yes', action: sendYes }}
             secondaryAction={{ copy: 'No', action: sendNo }}
-          />
+          >
+            <p>
+              Is the patient expected to be discharged the day of the procedure?
+            </p>
+          </QuestionCard>
+            
         );
 
       case 'inpatient':
         return (
           <ResultCard result="inpatient">
-            Recheck ketones and BGL every: - 1 hour in PACU then - 2 hourly on ward for 8 hours then - 4 hourly until
-            eating and drinking normally again
+            <p>
+              Recheck ketones and blood glucose every 1 hour in PACU, then 2 hourly on ward for 8 hours then 4 hourly until eating and drinking normally again.
+            </p>
+            
+            <p>
+              Only restart SGLT2i when eating and drinking and close to discharge (usually 3-5 days after major surgery)
+            </p>            
           </ResultCard>
         );
       case 'DKA':
         return (
-          <ResultCard result="DKA">
-            Suspect DKA. Contact endocrinology, start DKA insulin/dextrose infusion, Consider HDU Bed
+          <ResultCard result="Metabolic Acidosis">
+            <p>
+              Suspect DKA. Contact endocrinology, start DKA insulin/dextrose infusion. Consider HDU bed for close monitoring.
+            </p>
           </ResultCard>
         );
       case 'discharge':
         return (
           <ResultCard result="discharge">
-            BGL and ketone every 2 hours until eating and drinking normally. Consider 50 ml 50% dextrose and 2-4 units
-            insulin bolus to facilitate ketone clearance. This should be followed by BGL & ketone check at 15 minutes
-            and then hourly, and VBG (for potassium) 1 hour later. Consider overnight admission if vomiting / poor oral
-            intake and persistent ketosis Resume SGLT2i when appropriate*
+            <p>
+              Check BGL and ketone every 2 hours until eating and drinking normally. Resume SGLT2i when patient returns to full oral intake. Advise patients
+              to check blood glucose and ketones at home if feeling unwell in the week following surgery.
+            </p>
+            
+            <p>
+              Consider overnight admission if vomiting / poor oral intake and persistent ketosis. 
+            </p>
+            
+            <p>
+              (If ketones {'>'} 1.0, consider 50 ml 50% dextrose and 2-4 units insulin bolus to facilitate ketone clearance. 
+              This should be followed by BGL & ketone check at 15 minutes and then hourly, and VBG (for potassium) 1 hour later.)
+            </p>
           </ResultCard>
         );
       default:
